@@ -40,23 +40,85 @@
     // "I found my glasses!"
     console.log("I found my " + theCobWeb.biggestWeb.biggerWeb.items[0] + "!")
     // "I found my toothbrush!"
-    console.log("I found my " + theCobWeb.biggestWeb.biggerWeb.smallerWeb.item+ "!");
+    console.log("I found my " + theCobWeb.biggestWeb.biggerWeb.smallerWeb.item + "!");
     // "I found my headphones!"
-    console.log("I found my " + theCobWeb.biggestWeb.otherBigWeb.item+ "!");
+    console.log("I found my " + theCobWeb.biggestWeb.otherBigWeb.item + "!");
     // "I found my homework!"
-    console.log("I found my " + theCobWeb.biggestWeb.biggerWeb.smallerWeb.tinyWeb.items[3]+ "!");
+    console.log("I found my " + theCobWeb.biggestWeb.biggerWeb.smallerWeb.tinyWeb.items[3] + "!");
 
 
-// Bonus (Extra Hard): It's impossible to complete this in the allotted time. Take this home as a challenge and bring it back to your TA/Instructor for the solution.
-// Create a function using JavaScript (NOT jQuery) for which you can pass the name of an item and theCobWeb
-// and the function returns the smallest web it was found inside of.
-// Your code should work if someone were to modify theCobWeb.  
-//  for example if you gave your program 
-//    comb it should give back biggestWeb
-//    toenails it should give back tinyWeb
-//    headphones it should give back otherBigWeb
-// HINT: you should use recursion
+    // Bonus (Extra Hard): It's impossible to complete this in the allotted time. Take this home as a challenge and bring it back to your TA/Instructor for the solution.
+    // Create a function using JavaScript (NOT jQuery) for which you can pass the name of an item and theCobWeb
+    // and the function returns the smallest web it was found inside of.
+    // Your code should work if someone were to modify theCobWeb.  
+    //  for example if you gave your program 
+    //    comb it should give back biggestWeb
+    //    toenails it should give back tinyWeb
+    //    headphones it should give back otherBigWeb
+    // HINT: you should use recursion
+    let findWeb = (web, item) => {
+      if (web.item) {
 
+        if (web.item === item)
+          // if item is the item key value of the current web, we've found it
+          return web
+
+
+      } else if (web.items) {
+        // if there is an items array in the current web, we need to check each item in it
+        for (let i = web.items.length; i < web.items.length; i++) {
+          if (item === items[i])
+            return web
+        }
+      } else {
+
+      }
+    }
+
+    findWeb(theCobWeb, "comb");
+
+    let x = 0
+    let findWebArray = (web, item) => {
+      x++;
+
+      let webs;
+      if (Array.isArray(web)){
+
+        webs = web;
+      }
+      else{
+
+        webs = Object.entries(web);
+      }
+      console.log("web is array?", Array.isArray(web), "webs: " + web);
+      for (let i = 0; i < webs.length; i++) {
+        console.log("webs[" + i + "] is a(n) " + typeof(webs[i]) + ".", "webs[" + i + "]:", webs[i]);
+        switch (webs[i]) {
+          case item:
+            return web;
+          case "items":
+          console.log("In case:items")
+            // If there is an items array in webs, check all items in it
+            for (j = 0; j < webs[i].length; i++) {
+              if (webs[i][j] === item)
+                return webs;
+                break;
+            }
+          default:
+            // console.log("webs:", webs)
+            // console.log("webs[i]:", webs[i]);
+            if (x === 20) {
+              return ("end")
+            }
+            findWebArray(webs[i], item);
+        }
+        
+      }
+      // console.log("not an object")
+    }
+      // return ("Item not found!")
+
+    // console.log(findWebArray(theCobWeb, "comb"));
   </script>
 
 </body>
